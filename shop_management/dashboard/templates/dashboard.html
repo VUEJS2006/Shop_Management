@@ -1,0 +1,292 @@
+{% extends 'base.html'%}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<input type="text" id="menu-toggle">
+<div class="sidebar">
+    <div class="slide-head">
+        <h3>Smart <span>HR</span></h3>
+    </div>
+
+    <div class="profile">
+        <div class="pro-img bg-img" style="background: url(../../media/pb.jpg);"></div>
+        <h3 style="color: #fff;">David Chang</h3>
+        <small>Admin</small>
+    </div>
+
+    <div class="side-menu">
+        <ul>
+            <li>
+                <a href="#" class="active">
+                    <span><ion-icon name="home-outline"></ion-icon></span>
+                    <small>Dashboard</small>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span><ion-icon name="person-circle-outline"></ion-icon></span>
+                    <small>Profile</small>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span><ion-icon name="newspaper-outline"></ion-icon></span>
+                    <small>Daily Sale</small>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span><ion-icon name="cart-outline"></ion-icon></span>
+                    <small>Daily Order</small>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span><ion-icon name="cart-outline"></ion-icon></span>
+                    <small>Daily Order</small>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="main-content">
+    <header>
+        <div class="header-content">
+            <label for="nav-toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </label>
+            <div class="header-menu">
+
+               
+                <div class="user">
+                    <div class="bg-img" style="background: url(../../media/pb.jpg);"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="page-header">
+            <h1>Dashboard</h1>
+            <small>Home / Dashboard</small>
+        </div>
+       <div class="page-content">
+         <div class="analytics">
+            <div class="card">
+                <div class="card-head">
+                    <h2>10,200</h2>
+                    <span><ion-icon name="card-outline"></ion-icon></span>
+                </div>
+                <div class="card-progress">
+                    <small>My Bank</small>
+                    <div class="card-indictor">
+                        <div class="indictor"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">
+                    <h2>10,200</h2>
+                    <span><ion-icon name="cart-outline"></ion-icon></span>
+                </div>
+                <div class="card-progress">
+                    <small>Order</small>
+                    <div class="card-indictor">
+                        <div class="indictor"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">
+                    <h2>10,200</h2>
+                    <span><ion-icon name="newspaper-outline"></ion-icon></span>
+                </div>
+                <div class="card-progress">
+                    <small>Sale</small>
+                    <div class="card-indictor">
+                        <div class="indictor"></div>
+                    </div>
+                </div>
+            </div>
+             <div class="card">
+                <div class="card-head">
+                    <h2>10,200</h2>
+                    <span><ion-icon name="newspaper-outline"></ion-icon></span>
+                </div>
+                <div class="card-progress">
+                    <small>Sale</small>
+                    <div class="card-indictor">
+                        <div class="indictor"></div>
+                    </div>
+                </div>
+            </div>
+               
+            </div>
+            <div class="records">
+                <div class="record-header">
+                    <div class="add">
+                        <span>Entries</span>
+                        <select name="" id="">
+                            <option value="">ID</option>
+                            <button>Add record</button>
+                        </select>
+                    </div>
+                    <div class="browse">
+                        <input type="search" name="" id="" class="record-search">
+                        <select name="" id="">
+                            <option value="">Status</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="table-resopnsive">
+                    <table width="100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Ma Ay Lol</td>
+                                <td>
+                                    <div class="client">
+                                        <img src="../../media/pb.jpg" alt="" width="40" height="40">
+
+                                    </div>
+                                </td>
+
+                                <td>2000MMK</td>
+                                <td>2</td>
+                                <td>20000MMK</td>
+                                <td>Cash</td>
+                                <td>23/10/25</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Ma Ay Lol</td>
+                                <td>
+                                    <div class="client">
+                                        <img src="../../media/pb.jpg" alt="" width="40" height="40">
+
+                                    </div>
+                                </td>
+
+                                <td>2000MMK</td>
+                                <td>2</td>
+                                <td>20000MMK</td>
+                                <td>Cash</td>
+                                <td>23/10/25</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Ma Ay Lol</td>
+                                <td>
+                                    <div class="client">
+                                        <img src="../../media/pb.jpg" alt="" width="40" height="40">
+
+                                    </div>
+                                </td>
+
+                                <td>2000MMK</td>
+                                <td>2</td>
+                                <td>20000MMK</td>
+                                <td>Cash</td>
+                                <td>23/10/25</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Ma Ay Lol</td>
+                                <td>
+                                    <div class="client">
+                                        <img src="../../media/pb.jpg" alt="" width="40" height="40">
+
+                                    </div>
+                                </td>
+
+                                <td>2000MMK</td>
+                                <td>2</td>
+                                <td>20000MMK</td>
+                                <td>Cash</td>
+                                <td>23/10/25</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Ma Ay Lol</td>
+                                <td>
+                                    <div class="client">
+                                        <img src="../../media/pb.jpg" alt="" width="40" height="40">
+
+                                    </div>
+                                </td>
+
+                                <td>2000MMK</td>
+                                <td>2</td>
+                                <td>20000MMK</td>
+                                <td>Cash</td>
+                                <td>23/10/25</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Ma Ay Lol</td>
+                                <td>
+                                    <div class="client">
+                                        <img src="../../media/pb.jpg" alt="" width="40" height="40">
+
+                                    </div>
+                                </td>
+
+                                <td>2000MMK</td>
+                                <td>2</td>
+                                <td>20000MMK</td>
+                                <td>Cash</td>
+                                <td>23/10/25</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Ma Ay Lol</td>
+                                <td>
+                                    <div class="client">
+                                        <img src="../../media/pb.jpg" alt="" width="40" height="40">
+
+                                    </div>
+                                </td>
+
+                                <td>2000MMK</td>
+                                <td>2</td>
+                                <td>20000MMK</td>
+                                <td>Cash</td>
+                                <td>23/10/25</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Ma Ay Lol</td>
+                                <td>
+                                    <div class="client">
+                                        <img src="../../media/pb.jpg" alt="" width="40" height="40">
+
+                                    </div>
+                                </td>
+
+                                <td>2000MMK</td>
+                                <td>2</td>
+                                <td>20000MMK</td>
+                                <td>Cash</td>
+                                <td>23/10/25</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+       </div>
+    </main>
+</div>
+{% endblock %}
