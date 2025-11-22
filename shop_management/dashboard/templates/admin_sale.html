@@ -1,0 +1,89 @@
+{% extends 'base.html'%}
+{% block title %}Sale Page{% endblock %}
+{% block content %}
+{% include 'siber.html'%}
+<main class="content">
+    <section class="main" style="margin-top: 20px;">
+        <div class="box box-6">
+            <div class="box-header">
+                <h4>Recent Order</h4>
+                <a href="#">See All</a>
+            </div>
+            <div class="box-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Seller</th>
+                            <th>Ph</th>
+                            <th>Email</th>
+                            <th>Image</th>
+                            <th>Role</th>
+                            <th>Passoword</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Ko Phyo</td>
+                            <td>09685774940</td>
+                            <td>kophyo@gmail.com</td>
+                            <td>
+                                <img src="../../media/pb.jpg" alt="" width="50">
+                            </td>
+
+
+                            <td>Seller</td>
+                            <td>ghgfgs64g@vfdg</td>
+                            <td>
+                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal"><ion-icon style="font-size: 1.5rem;"
+                                        name="trash-outline"></ion-icon></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Ko Phyo</td>
+                            <td>09685774940</td>
+                            <td>kophyo@gmail.com</td>
+                            <td style="padding-top: 10px;">
+                                <img src="../../media/pb.jpg" alt="" width="50">
+                            </td>
+
+
+                            <td>Seller</td>
+                            <td>ghgfgs64g@vfdg</td>
+                            <td>
+                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal"><ion-icon style="font-size: 1.5rem;"
+                                        name="trash-outline"></ion-icon></button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Ko Phyo</td>
+                            <td>09685774940</td>
+                            <td>kophyo@gmail.com</td>
+                            <td>
+                                <img src="../../media/pb.jpg" alt="" width="50">
+                            </td>
+
+
+                            <td>Seller</td>
+                            <td>ghgfgs64g@vfdg</td>
+                            <td>
+                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal"><ion-icon style="font-size: 1.5rem;"
+                                        name="trash-outline"></ion-icon></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

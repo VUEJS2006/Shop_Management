@@ -1,0 +1,209 @@
+{% extends 'base.html'%}
+{% block title %}Shop Page{% endblock %}
+{% block content %}
+{% include 'siber.html'%}
+<style>
+    .modal-body form {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .modal-header {
+        background: var(--blue);
+        color:
+         #fff;
+    }
+    .modal-body form .imgholder{
+        /* flex-basis: 32%;
+        height: 100%; */
+        height: 200px;
+        width: 200px;
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    .modal-body form .inputField{
+        flex-basis: 68%;
+        border-left: 5px groove blue;
+        padding-left: 20px;
+
+    }
+    .imgholder .Uploaded input{
+     display: none;
+    }
+    .imgholder .Uploaded{
+        position: absolute;
+        bottom: 0;
+        left: 10;
+        width: 100%;
+        height: 100px;
+        background: rgba(0,0,0,.3);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .Uploaded ion-icon{
+        color: #fff;
+        font-size: 35px;
+    }
+    .imgholder:hover .Uploaded{
+        display: flex;
+    }
+     form .inputField > div{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+     }
+     form .inputField > div label{
+        font-size: 20px;
+        font-weight: 500;
+     }
+     #userForm form .inputField > div label::after{
+        content: '';
+        color: red;
+     }
+     form .inputField > div input,
+        form .inputField > div textarea{
+        width: 75%;
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-bottom: 2px solid blue;
+     }
+     .modal-footer .submit{
+        font-size: 18px;
+     }
+</style>
+<main class="content">
+    <section class="main" style="margin-top: 20px;">
+        <div class="box box-6">
+            <div class="box-header">
+                <h4>Shop Uploaded</h4>
+                <button class="shop" data-bs-toggle="modal" data-bs-target="#userForm">Add Shop</button>
+            </div>
+            <div class="box-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Seller</th>
+                            <th>Ph</th>
+                            <th>Email</th>
+                            <th>Image</th>
+                            <th>Role</th>
+                            <th>Passoword</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Ko Phyo</td>
+                            <td>09685774940</td>
+                            <td>kophyo@gmail.com</td>
+                            <td>
+                                <img src="../../media/pb.jpg" alt="" width="50">
+                            </td>
+
+
+                            <td>Seller</td>
+                            <td>ghgfgs64g@vfdg</td>
+                            <td>
+                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal"><ion-icon style="font-size: 1.5rem;"
+                                        name="trash-outline"></ion-icon></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Ko Phyo</td>
+                            <td>09685774940</td>
+                            <td>kophyo@gmail.com</td>
+                            <td style="padding-top: 10px;">
+                                <img src="../../media/pb.jpg" alt="" width="50">
+                            </td>
+
+
+                            <td>Seller</td>
+                            <td>ghgfgs64g@vfdg</td>
+                            <td>
+                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal"><ion-icon style="font-size: 1.5rem;"
+                                        name="trash-outline"></ion-icon></button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Ko Phyo</td>
+                            <td>09685774940</td>
+                            <td>kophyo@gmail.com</td>
+                            <td>
+                                <img src="../../media/pb.jpg" alt="" width="50">
+                            </td>
+
+
+                            <td>Seller</td>
+                            <td>ghgfgs64g@vfdg</td>
+                            <td>
+                                <button class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal"><ion-icon style="font-size: 1.5rem;"
+                                        name="trash-outline"></ion-icon></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Model -->
+<div class="modal fade" id="userForm">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Shop Uploaded Form</h4>
+                <button type="button" style="font-size: 17px;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="myForm">
+                    <div class="card imgholder">
+                        <label for="imgInput" class="Uploaded">
+                            <input type="file" name="" id="imgInput">
+                            <ion-icon  name="add-circle-outline"></ion-icon>
+                        </label>
+                        <img src="../../media/pb.jpg" alt="" width="200">
+                    </div>
+                    <div class="inputField">
+                        <div>
+                            <label for="name">Shop Name : </label>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <label for="name">Ph : </label>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <label for="name">Remark : </label>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <label for="address">Address : </label>
+                            <textarea style="resize: none;" name="address" id=""></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="myForm" class="shop submit">Uploaded</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

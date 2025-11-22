@@ -1,0 +1,80 @@
+<style>
+    a{
+        text-decoration: none;
+    }
+</style>
+<div class="containers">
+    <aside class="siber-wrapper">
+        <div class="sidebar-header">
+            <img src="../../media/pb.jpg" alt="">
+            <h4>Smart HR</h4>
+            <div class="close-menu">
+                <ion-icon name="arrow-back-circle-outline"></ion-icon>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'dashboard'%}">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <div class="title">Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'manager'%}">
+                        <ion-icon name="person-add-outline"></ion-icon>
+                        <div class="title">Manager</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'admin_sale'%}">
+                        <ion-icon name="cart-outline"></ion-icon>
+                        <div class="title">Daily Sales</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <ion-icon name="newspaper-outline"></ion-icon>
+                        <div class="title">Daily Orders</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <ion-icon name="document-outline"></ion-icon>
+                        <div class="title">Report</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <ion-icon name="git-pull-request-outline"></ion-icon>
+                        <div class="title">Request</div>
+                    </a>
+                </li>
+                 <li>
+                    <a href="{% url 'shop'%}">
+                        <ion-icon name="newspaper-outline"></ion-icon>
+                        <div class="title">Shops</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <ion-icon name="settings-outline"></ion-icon>
+                        <div class="title">Settings</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <ion-icon name="barbell-outline"></ion-icon>
+                        <div class="title">Support</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                        <div class="title">Logout</div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+</div>
