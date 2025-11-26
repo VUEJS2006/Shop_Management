@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management</title>
+    <link rel="stylesheet" href="../../static/css/mobile_style.css">
+</head>
+<body>
+
+    <div class="page-container">
+
+        <div class="nav">
+            <a href="{% url 'sales' %}" class="nav-link">Go to Sale Management</a>
+        </div>
+
+        <div class="content-block">
+            <h2 class="section-header">
+                📦 New Order Form
+            </h2>
+            <form action="#" method="POST" class="form-grid">
+                
+                <div class="form-group span-2">
+                    <label for="order_id">Order ID:</label>
+                    <input type="text" id="order_id" name="order_id" readonly value="#O004" class="read-only">
+                </div>
+                
+                <div class="form-group span-2">
+                    <label for="customer">Customer Name:</label>
+                    <input type="text" id="customer" name="customer" required>
+                </div>
+
+                <div class="form-group span-2">
+                    <label for="product">Product:</label>
+                    <input type="text" id="product" name="product" required>
+                </div>
+
+                <div class="form-group span-2">
+                    <label for="product_code">Product Code:</label>
+                    <input type="text" id="product_code" name="product_code">
+                </div>
+
+                <div class="form-group">
+                    <label for="qty">Quantity (Qty):</label>
+                    <input type="number" id="qty" name="qty" min="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="price">Price (per unit):</label>
+                    <input type="number" id="price" name="price" step="0.01" min="0" required>
+                </div>
+                
+                <div class="form-group span-2">
+                    <label for="total">Total:</label>
+                    <input type="text" id="total" name="total" readonly placeholder="Calculated Total" class="read-only">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required value="2025-11-25">
+                </div>
+                
+                <button type="submit" class="full-width action-button">Place Order</button>
+            </form>
+        </div>
+
+        <div class="content-block">
+            <h2 class="section-header">
+                📑 Recent Orders Table
+            </h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Code</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#O001</td>
+                        <td>Mg Mg</td>
+                        <td>SSD 1TB</td>
+                        <td>SSD-01</td>
+                        <td>1</td>
+                        <td>$80.00</td>
+                        <td>$80.00</td>
+                        <td>2025-11-23</td>
+                    </tr>
+                    <tr>
+                        <td>#O002</td>
+                        <td>Hla Hla</td>
+                        <td>Keyboard</td>
+                        <td>KB-05</td>
+                        <td>2</td>
+                        <td>$35.00</td>
+                        <td>$70.00</td>
+                        <td>2025-11-24</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
