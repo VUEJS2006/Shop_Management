@@ -1,0 +1,280 @@
+{% extends 'base.html'%}
+    {% block content %}
+    {% include 'siber.html'%}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quattrocento:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sevillana&family=Tangerine:wght@400;700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+        .set-container {
+            display: flex;
+            margin: 50px 10px;
+        }
+
+        .profiles {
+            flex: 1;
+            margin-right: 10px;
+            background: var(--W);
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            height: max-content;
+            border-radius: .5rem;
+        }
+
+        .profiles-header {
+            display: flex;
+            margin-left: 85px;
+            margin-top: 20px;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 10px;
+          
+            margin: 10px;
+        }
+
+        /* .profile-text {
+    line-height: 4;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+} */
+
+        .profile-title {
+            font-family: "Poppins", sans-serif;
+            font-size: 22px;
+            display: flex;
+
+        }
+
+        .pro {
+            display: flex;
+            line-height: 1.2;
+            margin-top: 40px;
+            flex-direction: column;
+            margin-left: 20px;
+        }
+
+        .profile-email {
+            font-size: 17px;
+            font-family: "Poppins", sans-serif;
+            margin-top: 10px;
+        }
+
+        .menu {
+            margin: 0 20px;
+        }
+
+        .menu-link {
+            display: block;
+            color: #768499;
+            font-family: "Poppins", sans-serif;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+
+
+
+        .menu-link {
+            color: #fff;
+            background-color: #536dfe;
+        }
+
+
+        .accounts {
+            flex: 2;
+            margin-left: 10px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            ;
+            background: #fff;
+            border-radius: 5px;
+            height: max-content;
+            padding: 20px;
+        }
+
+        .account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #768499;
+        }
+
+        .account-title {
+            font-size: 20px;
+            color: #1e293b;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+
+        .btn-container {
+            margin-right: 10px;
+        }
+
+        .btn-cancel {
+            width: 8rem;
+            height: 3rem;
+            cursor: pointer;
+            border: 1px solid #768499;
+            border-radius: 2rem;
+            color: var(--b);
+            font-weight: bold;
+            margin-right: 5px;
+            background: #fff;
+            transition-duration: .3s;
+            box-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-cancel:hover {
+            background: #f1f5f9;
+        }
+
+        .btn-save {
+            width: 8rem;
+            height: 3rem;
+            cursor: pointer;
+            border: 1px solid #458ff6;
+            border-radius: 2rem;
+            color: #fff;
+            border: none;
+            outline: none;
+            font-weight: bold;
+            margin-right: 5px;
+            background: #536dfe;
+            transition-duration: .3s;
+            box-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-save:hover {
+            background: #4053c9;
+        }
+
+        .account-edit {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+        }
+
+        .input-conatiner {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin: 0 20px;
+        }
+
+        .input-conatiner label {
+            color: #768499;
+            font-size: 14px;
+        }
+
+        .input-conatiner input {
+            height: 40px;
+            border: 1.5px solid #768499;
+            border-radius: 5px;
+            padding: 5px;
+            color: #000;
+        }
+
+        .input-conatiner input:focus {
+            outline: none;
+            border: 1.5 solid #536dfe;
+        }
+
+        .input-conatiner .select {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            font-size: 15px;
+            color: #768499;
+        }
+
+        .account-edit .input-conatiner textarea {
+            display: block;
+            width: 100%;
+            height: 70px;
+            padding: 5px;
+            border: 1.5px solid #768499;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .account-edit .input-conatiner textarea::placeholder {
+            font-size: 15px;
+            color: #768499;
+            margin-left: 10px;
+        }
+    </style>
+    <div class="conatiners" id="top">
+        <main class="content">
+            <div class="set-container">
+               
+                <div class="profiles">
+                    <div class="profiles-header">
+
+                        <img src="{{user.profile.url}}" alt="" class="profile-img">
+                    </div>
+                    <div class="menu">
+                        <a href="#" class="menu-link fs-4">{{user.username}}</a>
+                        <a href="#" class="menu-link fs-4">{{user.email}}</a>
+                        <a href="#" class="menu-link fs-4">{{user.position}}</a>
+                        <a href="#" class="menu-link fs-4">{{user.phone}}</a>
+                    </div>
+                </div>
+              
+                <form action="{% url 'setting_update' user.id%}" class="accounts" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="account-header">
+                        <h1 class="account-title">Account Settings</h1>
+                        <div class="btn-container">
+                            <button class="btn-cancel"> <a href="/"></a>Cancel</button>
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                    <div class="account-edit">
+                        <div class="input-conatiner">
+                            <label for="">Profile Image</label>
+                            <input type="file" name="profile" class="fs-4" id="" placeholder="Image" value="">
+                        </div>
+                    </div>
+
+                    <div class="account-edit">
+                        <div class="input-conatiner">
+                            <label for="">Username</label>
+                            <input type="text" name="username" class="fs-4" id="username" placeholder="Enter Username"
+                                value="{{user.username}}" >
+                        </div>
+                    </div>
+                    <div class="account-edit">
+                        <div class="input-conatiner">
+                            <label for="">Email</label>
+                            <input type="email"  name="email" class="fs-4" id="email" placeholder="Enter Email"
+                                value="{{user.email}}" >
+                        </div>
+                    </div>
+                      
+                      <div class="account-edit">
+                        <div class="input-conatiner">
+                            <label for="">Position</label>
+                            <input type="text" name="position" class="fs-4" id="" placeholder="Enter Position"
+                                value="{{user.position}}" >
+                        </div>
+                    </div>
+                    <div class="account-edit">
+                        <div class="input-conatiner">
+                            <label for="">Phone Number</label>
+                            <input type="text" class="fs-4" name="phone" id="" placeholder="Enter Phone"
+                                value="{{user.phone}}" >
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+    </main>
+
+    </div>
+    </div>
+
+
+
+
+    {% endblock %}

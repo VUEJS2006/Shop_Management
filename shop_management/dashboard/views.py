@@ -1,9 +1,56 @@
-from django.shortcuts import render
-
+from django.shortcuts import render,redirect
+from authentication.models import UserModel
+from django.contrib import messages
 def Dashboard(request):
     return render(request,'dashboard.html')
 def Manager(request):
-    return render(request,'manager.html')
+    users = UserModel.objects.all()
+    context = {
+        'users':users
+    }
+    return render(request,'manager.html',context)
+def ManagerDelete(request,pk):
+    user = UserModel.objects.get( id = pk)
+    if request.method == "POST":
+        if user.profile:
+            user.profile.delete()
+            user.delete()
+            messages.success(request,'User Account Delete!')
+            return redirect('/dashboard/manager/')
+def AddManager(request):
+    if request.method == "GET":
+        return redirect(request,'manager.html')
+    if request.method == "POST":
+       username = request.POST['username']
+       email = request.POST['email']
+       profile = request.FILES.get('profile')
+       position = request.POST['position']
+       phone = request.POST['phone']
+       password = request.POST['password']
+       user = UserModel.objects.create(
+           username = username,
+           email  = email,
+           profile = profile,
+           position = position,
+           phone = phone
+       )
+       user.set_password(password)
+       user.save()
+       messages.success(request,'Add User Successfully!')
+       return redirect('/dashboard/manager/')
+def ManagerUpdate(request,pk):
+    user = UserModel.objects.get(id = pk)
+    if request.method == "POST":
+        user.username = request.POST['username']
+        user.email = request.POST['email']
+        if request.FILES.get('profile'):
+            user.profile = request.FILES.get('profile')
+        user.position = request.POST['position']
+        user.phone = request.POST['phone']
+        user.save()
+        messages.success(request,'User Account Update!')
+        return redirect('/dashboard/manager/')
+
 def Daily_Sale(request):
     return render(request,'daily_sales.html')
 
@@ -19,3 +66,26 @@ def Request(request):
 
 def Report(request):
     return render(request,'report.html')
+
+def Settings(request):
+     return render(request,'settings.html')
+def SettingsUpdate(request,pk):
+    user = UserModel.objects.get(id = pk)
+    if request.method == 'POST':
+            user.username = request.POST['username']
+            user.position = request.POST['position']
+            user.phone = request.POST['phone']
+            user.email = request.POST['email']
+            if request.FILES.get('profile'):
+                user.profile = request.FILES.get('profile')
+            user.save()
+            messages.success(request,'Profile Update!')
+            return redirect('/dashboard/settings/')
+    context = {
+        'user':user
+    }
+    return render(request,'settings.html',context)
+   
+    
+        
+        

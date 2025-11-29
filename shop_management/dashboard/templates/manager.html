@@ -1,198 +1,276 @@
 {% extends 'base.html'%}
-{% block title %}Manager Page{% endblock %}
-{% block content %}
-{% include 'siber.html'%}
-<style>
-    .modal-body form {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding: 0;
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    .modal-header {
-        background: var(--blue);
-        color:
-         #fff;
-    }
-    .modal-body form .imgholder{
-        /* flex-basis: 32%;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Manager Page{% endblock %}</title>
+</head>
+
+<body>
+    {% block content %}
+    {% include 'siber.html'%}
+    <style>
+        .modal-body form {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0;
+        }
+
+        .modal-header {
+            background: var(--blue);
+            color:
+                #fff;
+        }
+
+        .modal-body form .imgholder {
+            /* flex-basis: 32%;
         height: 100%; */
-        height: 200px;
-        width: 200px;
-        position: relative;
-        border-radius: 20px;
-        overflow: hidden;
-    }
-    .modal-body form .inputField{
-        flex-basis: 68%;
-        border-left: 5px groove blue;
-        padding-left: 20px;
+            height: 200px;
+            width: 200px;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+        }
 
-    }
-    .imgholder .Uploaded input{
-     display: none;
-    }
-    .imgholder .Uploaded{
-        position: absolute;
-        bottom: 0;
-        left: 10;
-        width: 100%;
-        height: 100px;
-        background: rgba(0,0,0,.3);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
-    .Uploaded ion-icon{
-        color: #fff;
-        font-size: 35px;
-    }
-    .imgholder:hover .Uploaded{
-        display: flex;
-    }
-     form .inputField > div{
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-     }
-     form .inputField > div label{
-        font-size: 20px;
-        font-weight: 500;
-     }
-     #userForm form .inputField > div label::after{
-        content: '';
-        color: red;
-     }
-     form .inputField > div input,
-        form .inputField > div textarea{
-        width: 75%;
-        padding: 10px;
-        border: none;
-        outline: none;
-        border-bottom: 2px solid blue;
-     }
-     .modal-footer .submit{
-        font-size: 18px;
-     }
-</style>
-<main class="content">
-    <section class="main" style="margin-top: 20px;">
-        <div class="box box-6">
-            <div class="box-header">
-                <h4>Manager</h4>
-                <button class="shop" data-bs-toggle="modal" data-bs-target="#userForm">Add Staff Acc</button>
-            </div>
-            <div class="box-body">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Staff Name</th>
-                            <th>email</th>
-                            <th>Position</th>
-                            <th>Image</th>
-                            <th>Password</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Ko Phyo</td>
-                            <td>kophyo@gmail.com</td>
-                            <td>Seller</td>
-                            <td>
-                                <img src="../../media/pb.jpg" alt="" width="50">
-                            </td>
-                            <td>09685774940</td>
-                            <td>
-                                <button class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal"><ion-icon style="font-size: 1.5rem;"
-                                        name="trash-outline"></ion-icon></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Ko Phyo</td>
-                            <td>kophyo@gmail.com</td>
-                            <td>Seller</td>
-                            <td>
-                                <img src="../../media/pb.jpg" alt="" width="50">
-                            </td>
-                            <td>09685774940</td>
-                            <td>
-                                <button class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal"><ion-icon style="font-size: 1.5rem;"
-                                        name="trash-outline"></ion-icon></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Ko Phyo</td>
-                            <td>kophyo@gmail.com</td>
-                            <td>Seller</td>
-                            <td>
-                                <img src="../../media/pb.jpg" alt="" width="50">
-                            </td>
-                            <td>09685774940</td>
-                            <td>
-                                <button class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal"><ion-icon style="font-size: 1.5rem;"
-                                        name="trash-outline"></ion-icon></button>
-                            </td>
-                        </tr>
+        .modal-body form .inputField {
+            flex-basis: 68%;
+            border-left: 5px groove blue;
+            padding-left: 20px;
+            font-size: 20px;
 
-                    </tbody>
-                </table>
+        }
+
+        .imgholder .Uploaded input {
+            display: none;
+        }
+
+        .imgholder .Uploaded {
+            position: absolute;
+            bottom: 0;
+            left: 10;
+            width: 100%;
+            height: 100px;
+            background: rgba(0, 0, 0, .3);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .Uploaded ion-icon {
+            color: #fff;
+            font-size: 35px;
+        }
+
+        .imgholder:hover .Uploaded {
+            display: flex;
+        }
+
+        form .inputField>div {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        form .inputField>div label {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        #userForm form .inputField>div label::after {
+            content: '';
+            color: red;
+        }
+
+        form .inputField>div input,
+        form .inputField>div textarea {
+            width: 75%;
+            padding: 10px;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid blue;
+        }
+
+        .modal-footer .submit {
+            font-size: 18px;
+        }
+    </style>
+    <main class="content">
+        <section class="main" style="margin-top: 20px;">
+            <div class="box box-6">
+                <div class="box-header">
+                    <h4>Manager</h4>
+                    <button class="shop" data-bs-toggle="modal" data-bs-target="#userForm">Add Staff Acc</button>
+                </div>
+                <div class="box-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Staff Name</th>
+                                <th>email</th>
+                                <th>Position</th>
+                                <th>Image</th>
+                                <th>Phone</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{user.username}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.position}}</td>
+                                <td>
+                                    {% if user.profile %}
+                                    <img src="{{user.profile.url}}" alt="" width="60"
+                                        style="margin: 10px;border-radius: 50%;">
+                                    {% endif %}
+                                </td>
+                                <td>{{user.phone}}</td>
+                                <td>
+                                    <button class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#updateModal_{{ user.id }}"> <ion-icon name="create-outline"
+                                            style="font-size: 1.7rem;color: #fff;"></ion-icon></button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal_{{user.id}}"><ion-icon
+                                            style="font-size: 1.7rem;color: #fff;"
+                                            name="trash-outline"></ion-icon></button>
+
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    </section>
-</main>
-<!-- Model -->
-<div class="modal fade" id="userForm">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Shop Uploaded Form</h4>
-                <button type="button" style="font-size: 17px;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="#" id="myForm">
-                    <div class="card imgholder">
-                        <label for="imgInput" class="Uploaded">
-                            <input type="file" name="" id="imgInput">
-                            <ion-icon  name="add-circle-outline"></ion-icon>
-                        </label>
-                        <img src="../../media/pb.jpg" alt="" width="200">
-                    </div>
-                    <div class="inputField">
-                        <div>
-                            <label for="name">Name : </label>
-                            <input type="text">
+        </section>
+    </main>
+    <!-- Model -->
+    <div class="modal fade" id="userForm">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Shop Uploaded Form</h4>
+                    <button type="button" style="font-size: 17px;" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'manager_create' %}" method="POST" enctype="multipart/form-data" id="myForm">
+                        {% csrf_token %}
+                        <div class="card imgholder">
+                            <label for="imgInput" class="Uploaded">
+                                <input type="file" name="profile" id="imgInput">
+                                <ion-icon name="add-circle-outline"></ion-icon>
+                            </label>
+                            <img src="../../media/profile/8608769.png" alt="" width="200">
                         </div>
-                        <div>
-                            <label for="name">Email : </label>
-                            <input type="text">
+                        <div class="inputField">
+                            <div>
+                                <label for="username">Name : </label>
+                                <input type="text" name="username" id="username">
+                            </div>
+                            <div>
+                                <label for="email">Email : </label>
+                                <input type="email" name="email" id="email">
+                            </div>
+                            <div>
+                                <label for="password">Password : </label>
+                                <input type="password" name="password" id="password">
+                            </div>
+                            <div>
+                                <label for="position">Position : </label>
+                                <input type="text" name="position" id="position">
+                            </div>
+                            <div>
+                                <label for="phone">Phone: </label>
+                                <input type="text" name="phone" id="phone">
+                            </div>
                         </div>
-                        <div>
-                            <label for="name">Position : </label>
-                            <input type="text">
-                        </div>
-                        <div>
-                            <label for="address">Password : </label>
-                            <textarea style="resize: none;" name="address" id=""></textarea>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" form="myForm" class="shop submit">Uploaded</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" form="myForm" class="shop submit">Uploaded</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    <!-- Delete -->
+    {% for user in users %}
+    <div class="modal fade" id="deleteModal_{{user.id}}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Delete User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form method="POST" action="{% url 'manager_delete' user.id%}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        Are you sure you want to delete?<strong>{{user.username}}</strong>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- Update -->
+    {% for user in users %}
+    <div class="modal fade" id="updateModal_{{ user.id }}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Update Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form method="POST" action="{% url 'manager_update' user.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="mb-3 text-start">
+                            <label class="form-label fs-4">UserName</label>
+                            <input type="text" class="form-control fs-4"  name="username" value="{{ user.username }}">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="form-label  fs-4">Email</label>
+                            <input type="email"  class="form-control fs-4" name="email" value="{{ user.email }}">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="col-form-label  fs-4">Current Image</label><br>
+                            {% if user.profile %}
+                            <img src="{{user.profile.url}}" width="80px">
+                            {% endif %}
+                            <input type="file" name="profile" class="form-control mt-2 fs-4">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="form-label  fs-4">Phone</label>
+                            <input type="text" class="form-control fs-4" name="phone" value="{{ user.phone }}">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="form-label  fs-4">Position</label>
+                            <input type="text" class="form-control fs-4" name="position" value="{{ user.position }}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary fs-4" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success fs-4">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}
+</body>
+
+</html>
