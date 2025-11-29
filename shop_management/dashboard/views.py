@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from authentication.models import UserModel
 from django.contrib import messages
+from .models import Product
+
 def Dashboard(request):
     return render(request,'dashboard.html')
 def Manager(request):
@@ -67,6 +69,9 @@ def Request(request):
 def Report(request):
     return render(request,'report.html')
 
+def Products(request):
+    return render(request, 'products.html')
+
 def Settings(request):
      return render(request,'settings.html')
 def SettingsUpdate(request,pk):
@@ -88,4 +93,19 @@ def SettingsUpdate(request,pk):
    
     
         
-        
+
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, "products.html", {"products": products})
+
+def product_upload(request):
+    if request.method == "POST":
+        Product.objects.create(
+            code=request.POST["code"],
+            name=request.POST["name"],
+            price=request.POST["price"],
+            photo=request.FILES["photo"]
+        )
+        return redirect("product-list")
+
+    return redirect("product-list")

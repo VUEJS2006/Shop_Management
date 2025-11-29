@@ -2,84 +2,16 @@
 {% block title %}Shop Page{% endblock %}
 {% block content %}
 {% include 'siber.html'%}
-<style>
-    .modal-body form {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding: 0;
-    }
-
-    .modal-header {
-        background: var(--blue);
-        color:
-         #fff;
-    }
-    .modal-body form .imgholder{
-        /* flex-basis: 32%;
-        height: 100%; */
-        height: 200px;
-        width: 200px;
-        position: relative;
-        border-radius: 20px;
-        overflow: hidden;
-    }
-    .modal-body form .inputField{
-        flex-basis: 68%;
-        border-left: 5px groove blue;
-        padding-left: 20px;
-
-    }
-    .imgholder .Uploaded input{
-     display: none;
-    }
-    .imgholder .Uploaded{
-        position: absolute;
-        bottom: 0;
-        left: 10;
-        width: 100%;
-        height: 100px;
-        background: rgba(0,0,0,.3);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
-    .Uploaded ion-icon{
-        color: #fff;
-        font-size: 35px;
-    }
-    .imgholder:hover .Uploaded{
-        display: flex;
-    }
-     form .inputField > div{
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-     }
-     form .inputField > div label{
-        font-size: 20px;
-        font-weight: 500;
-     }
-     #userForm form .inputField > div label::after{
-        content: '';
-        color: red;
-     }
-     form .inputField > div input,
-        form .inputField > div textarea{
-        width: 75%;
-        padding: 10px;
-        border: none;
-        outline: none;
-        border-bottom: 2px solid blue;
-     }
-     .modal-footer .submit{
-        font-size: 18px;
-     }
-</style>
-<main class="content">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Orders</title>
+    <link rel="stylesheet" href="../../static/css/dashboard.css">
+</head>
+<body>
+    <main class="content">
     <section class="main" style="margin-top: 20px;">
         <div class="box box-6">
             <div class="box-header">
@@ -137,3 +69,5 @@
     </section>
 </main>
 {% endblock %}
+</body>
+</html>

@@ -14,6 +14,7 @@ urlpatterns = [
    path('daily_orders/',views.Daily_orders, name='daily_orders'),
    path('request_table/',views.Request, name='request'),
    path('report/',views.Report, name='report'),
+   path('products/',views.Products, name='products'),
    path('settings/',views.Settings, name='settings'),
    path('settings/update/<uuid:pk>',views.SettingsUpdate, name='setting_update'),
 ]

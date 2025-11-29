@@ -1,0 +1,104 @@
+{% extends 'base.html'%}
+{% block title %}Shop Page{% endblock %}
+{% block content %}
+{% include 'siber.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="../../static/css/dashboard.css">
+</head>
+<body>
+    <main class="content">
+    <section class="main" style="margin-top: 20px;">
+        <div class="box box-6">
+            <div class="box-header">
+                <h4>Products Uploaded</h4>
+                <button class="shop" data-bs-toggle="modal" data-bs-target="#userForm">Add New Products</button>
+            </div>
+            <div class="box-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Products Code</th>
+                            <th>Products Name</th>
+                            <th>PRoducts Photo</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Ko Phyo</td>
+                            <td>
+                                <img src="../../media/pb.jpg" alt="" width="50">
+                            </td>
+                            <td>09685774940</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Ko Phyo</td>
+                            <td>
+                                <img src="../../media/pb.jpg" alt="" width="50">
+                            </td>
+                            <td>09685774940</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Ko Phyo</td>
+                            <td>
+                                <img src="../../media/pb.jpg" alt="" width="50">
+                            </td>
+                            <td>09685774940</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Model -->
+<div class="modal fade" id="userForm">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Shop Uploaded Form</h4>
+                <button type="button" style="font-size: 17px;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="myForm">
+                    <div class="card imgholder">
+                        <label for="imgInput" class="Uploaded">
+                            <input type="file" name="" id="imgInput">
+                            <ion-icon  name="add-circle-outline"></ion-icon>
+                        </label>
+                        <img src="../../media/pb.jpg" alt="" width="200">
+                    </div>
+                    <div class="inputField">
+                        <div>
+                            <label for="name">Products Code : </label>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <label for="name">Products Name : </label>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <label for="name">Price : </label>
+                            <input type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="myForm" class="shop submit">Uploaded</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>
