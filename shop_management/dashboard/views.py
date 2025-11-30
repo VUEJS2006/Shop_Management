@@ -69,9 +69,6 @@ def Request(request):
 def Report(request):
     return render(request,'report.html')
 
-def Products(request):
-    return render(request, 'products.html')
-
 def Settings(request):
      return render(request,'settings.html')
 def SettingsUpdate(request,pk):
@@ -93,7 +90,7 @@ def SettingsUpdate(request,pk):
    
     
         
-
+##   product    ##
 def product_list(request):
     products = Product.objects.all()
     return render(request, "products.html", {"products": products})
@@ -106,6 +103,4 @@ def product_upload(request):
             price=request.POST["price"],
             photo=request.FILES["photo"]
         )
-        return redirect("product-list")
-
-    return redirect("product-list")
+        return redirect("product_list")

@@ -14,7 +14,8 @@ urlpatterns = [
    path('daily_orders/',views.Daily_orders, name='daily_orders'),
    path('request_table/',views.Request, name='request'),
    path('report/',views.Report, name='report'),
-   path('products/',views.Products, name='products'),
+   path("products/", views.product_list, name="product_list"),
+   path("products/upload/", views.product_upload, name="product_upload"),
    path('settings/',views.Settings, name='settings'),
    path('settings/update/<uuid:pk>',views.SettingsUpdate, name='setting_update'),
 ]

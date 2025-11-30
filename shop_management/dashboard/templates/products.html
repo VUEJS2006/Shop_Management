@@ -24,36 +24,22 @@
                         <tr>
                             <th>Products Code</th>
                             <th>Products Name</th>
-                            <th>PRoducts Photo</th>
+                            <th>Products Photo</th>
                             <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Ko Phyo</td>
-                            <td>
-                                <img src="../../media/pb.jpg" alt="" width="50">
-                            </td>
-                            <td>09685774940</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Ko Phyo</td>
-                            <td>
-                                <img src="../../media/pb.jpg" alt="" width="50">
-                            </td>
-                            <td>09685774940</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Ko Phyo</td>
-                            <td>
-                                <img src="../../media/pb.jpg" alt="" width="50">
-                            </td>
-                            <td>09685774940</td>
-                        </tr>
-                        
+                            {% for p in products %}
+                            <tr>
+                                <td>{{ p.code }}</td>
+                                <td>{{ p.name }}</td>
+                                <td>
+                                    <img src="{{ p.photo.url }}" width="50">
+                                </td>
+                                <td>{{ p.price }}</td>
+                            </tr>
+                            {% endfor %}
+
                     </tbody>
                 </table>
             </div>
@@ -65,40 +51,48 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Shop Uploaded Form</h4>
-                <button type="button" style="font-size: 17px;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h4 class="modal-title">New Products</h4>
+                <button type="button" style="font-size: 17px;" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+
             <div class="modal-body">
-                <form action="#" id="myForm">
+                <form action="{% url 'product_upload' %}" method="POST" enctype="multipart/form-data" id="myForm">
+                    {% csrf_token %}
+
                     <div class="card imgholder">
                         <label for="imgInput" class="Uploaded">
-                            <input type="file" name="" id="imgInput">
-                            <ion-icon  name="add-circle-outline"></ion-icon>
+                            <input type="file" name="photo" id="imgInput" required>
+                            <ion-icon name="add-circle-outline"></ion-icon>
                         </label>
-                        <img src="../../media/pb.jpg" alt="" width="200">
+                        <img id="previewImg" src="../../media/pb.jpg" width="200">
                     </div>
+
                     <div class="inputField">
                         <div>
-                            <label for="name">Products Code : </label>
-                            <input type="text">
+                            <label>Products Code : </label>
+                            <input type="text" name="code" required>
                         </div>
+
                         <div>
-                            <label for="name">Products Name : </label>
-                            <input type="text">
+                            <label>Products Name : </label>
+                            <input type="text" name="name" required>
                         </div>
+
                         <div>
-                            <label for="name">Price : </label>
-                            <input type="text">
+                            <label>Price : </label>
+                            <input type="text" name="price" required>
                         </div>
                     </div>
                 </form>
             </div>
+
             <div class="modal-footer">
                 <button type="submit" form="myForm" class="shop submit">Uploaded</button>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
 </body>
 </html>
