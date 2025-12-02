@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from authentication.models import UserModel
 from django.contrib import messages
-from .models import Product
+from .models import Product, Shop
 
 def Dashboard(request):
     return render(request,'dashboard.html')
@@ -11,6 +11,7 @@ def Manager(request):
         'users':users
     }
     return render(request,'manager.html',context)
+
 def ManagerDelete(request,pk):
     user = UserModel.objects.get( id = pk)
     if request.method == "POST":
@@ -19,6 +20,7 @@ def ManagerDelete(request,pk):
             user.delete()
             messages.success(request,'User Account Delete!')
             return redirect('/dashboard/manager/')
+        
 def AddManager(request):
     if request.method == "GET":
         return redirect(request,'manager.html')
@@ -40,6 +42,7 @@ def AddManager(request):
        user.save()
        messages.success(request,'Add User Successfully!')
        return redirect('/dashboard/manager/')
+    
 def ManagerUpdate(request,pk):
     user = UserModel.objects.get(id = pk)
     if request.method == "POST":
@@ -58,8 +61,36 @@ def Daily_Sale(request):
 
 def Daily_orders(request):
     return render(request,'daily_orders.html')
-def Shop(request):
-    return render(request,'shop.html')
+
+def shop(request):
+    shops = Shop.objects.all()
+    if request.method == "POST":
+        name = request.POST.get("name")
+        phone = request.POST.get("phone")
+        remark = request.POST.get("remark")
+        address = request.POST.get("address")
+        photo = request.FILES.get("photo")
+        if Shop.objects.filter(name=name).exists():
+            return render(request, "shop.html", {
+                "shops": shops,
+                "error": "This shop name already exists!",
+            })
+        if Shop.objects.filter(phone=phone).exists():
+            return render(request, "shop.html", {
+                "shops": shops,
+                "error": "This phone number already exists!",
+            })
+        shop = Shop.objects.create(
+            name=name,
+            phone=phone,
+            remark=remark,
+            address=address,
+            photo=photo,
+        )
+        shop.save()
+        messages.success(request,'Shop upload successfully!')
+    return render(request, 'shop.html', {"shops": shops})
+
 def Setting(request):
     return render(request,'setting.html')
 
@@ -71,6 +102,7 @@ def Report(request):
 
 def Settings(request):
      return render(request,'settings.html')
+
 def SettingsUpdate(request,pk):
     user = UserModel.objects.get(id = pk)
     if request.method == 'POST':
@@ -88,8 +120,6 @@ def SettingsUpdate(request,pk):
     }
     return render(request,'settings.html',context)
    
-    
-        
 ##   product    ##
 def product_list(request):
     products = Product.objects.all()
