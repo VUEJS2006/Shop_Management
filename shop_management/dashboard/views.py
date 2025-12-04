@@ -62,34 +62,6 @@ def Daily_Sale(request):
 def Daily_orders(request):
     return render(request,'daily_orders.html')
 
-def shop(request):
-    shops = Shop.objects.all()
-    if request.method == "POST":
-        name = request.POST.get("name")
-        phone = request.POST.get("phone")
-        remark = request.POST.get("remark")
-        address = request.POST.get("address")
-        photo = request.FILES.get("photo")
-        if Shop.objects.filter(name=name).exists():
-            return render(request, "shop.html", {
-                "shops": shops,
-                "error": "This shop name already exists!",
-            })
-        if Shop.objects.filter(phone=phone).exists():
-            return render(request, "shop.html", {
-                "shops": shops,
-                "error": "This phone number already exists!",
-            })
-        shop = Shop.objects.create(
-            name=name,
-            phone=phone,
-            remark=remark,
-            address=address,
-            photo=photo,
-        )
-        shop.save()
-        messages.success(request,'Shop upload successfully!')
-    return render(request, 'shop.html', {"shops": shops})
 
 def Setting(request):
     return render(request,'setting.html')
@@ -134,3 +106,45 @@ def product_upload(request):
             photo=request.FILES["photo"]
         )
         return redirect("product_list")
+def ShopUpload(request):
+    shops = Shop.objects.all()
+    context = {
+        'shops':shops
+    }
+    return render(request,'shop.html',context)
+def AddShop(request):
+    if request.method == "GET":
+        return render(request,'shop.html')
+    if request.method == "POST":
+        shops = Shop.objects.create(
+            name = request.POST['name'],
+            image = request.FILES.get('image'),
+            phone = request.POST['phone'],
+            address = request.POST['address'],
+            remark = request.POST['remark']
+        )
+        shops.save()
+        messages.success(request,'Add Shop Sucess!')
+        return redirect('/dashboard/shop/')
+def UpdateShop(request,pk):
+    if request.method == "POST":
+        shop = Shop.objects.get(id = pk)
+        shop.name = request.POST['name']
+        shop.phone = request.POST['phone']
+        shop.address = request.POST['address']
+        shop.remark = request.POST['remark']
+        if request.FILES.get('image'):
+            shop.image = request.FILES.get('image')
+        shop.save()
+        messages.success(request,'Shop Update Success!')
+        return redirect('/dashboard/shop/')
+def DeleteShop(request,pk):
+    if request.method == "POST":
+        shop = Shop.objects.get(id = pk)
+        if shop.image:
+            shop.image.delete()
+            shop.delete()
+            messages.success(request,'Shop Delete!')
+            return redirect('/dashboard/shop/')
+
+     

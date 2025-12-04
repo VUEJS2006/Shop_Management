@@ -1,17 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Management</title>
     <link rel="stylesheet" href="../../static/css/mobile_style.css">
 </head>
+<style>
+    * {
+        list-style: none;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .dropdown-box {
+        width: 100%;
+    }
+
+    .dropdown-box input {
+        width: 100%;
+        border: 1px solid rgb(80 80 80);
+        outline: none;
+        border-radius: 5px;
+        color: rgb(80 80 80);
+        font-size: 14px;
+        padding: 9px 8px;
+    }
+
+    .dropdown-box .selected-item {
+        position: relative;
+    }
+
+    .dropdown-box .selected-item::after {
+        content: '';
+        width: 3px;
+        height: 3px;
+        border: 2px solid;
+        border-color: transparent rgb(55, 56, 56) rgb(49, 49, 49) transparent;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-70%) rotate(45deg);
+    }
+
+    .dropdown-box .selected-item,
+    .dropdown-box .selected-item input {
+        cursor: pointer;
+    }
+
+    .dropdown-box .drop-content {
+        box-shadow: 0 5px 15px rgb(0 0 0 / 15%);
+        border-radius: 5px;
+        max-height: 230px;
+        overflow: auto;
+        display: none;
+    }
+
+    .dropdown-box.active .drop-content {
+        display: block;
+    }
+
+    .dropdown-box .drop-content .search-input {
+        padding: 5px;
+    }
+
+    .dropdown-box .drop-content ul li {
+        font-size: 1rem;
+        padding: 2px 5px;
+        cursor: pointer;
+    }
+
+    .dropdown-box .drop-content ul li.hide {
+        display: none;
+    }
+
+    .dropdown-box .drop-content ul li:hover {
+        background: rgb(245 245 245);
+    }
+
+    .dropdown-box .drop-content ul li.active {
+        background: rgb(189, 235, 238);
+
+    }
+</style>
+
 <body>
 
     <div class="page-container">
 
         <div class="nav">
             <a href="{% url 'sales' %}" class="nav-link">Go to Sale Management</a>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="nav-link">Login</a>
+            {% endif %}
         </div>
 
         <div class="content-block">
@@ -19,21 +104,14 @@
                 📦 New Order Form
             </h2>
             <form action="#" method="POST" class="form-grid">
-                
-                <div class="form-group span-2">
-                    <label for="order_id">Order ID:</label>
-                    <input type="text" id="order_id" name="order_id" readonly value="#O004" class="read-only">
-                </div>
-                
+
+               
+
                 <div class="form-group span-2">
                     <label for="customer">Customer Name:</label>
                     <input type="text" id="customer" name="customer" required>
                 </div>
 
-                <div class="form-group span-2">
-                    <label for="product">Product:</label>
-                    <input type="text" id="product" name="product" required>
-                </div>
 
                 <div class="form-group span-2">
                     <label for="product_code">Product Code:</label>
@@ -44,22 +122,42 @@
                     <label for="qty">Quantity (Qty):</label>
                     <input type="number" id="qty" name="qty" min="1" required>
                 </div>
-                
-                <div class="form-group">
-                    <label for="price">Price (per unit):</label>
-                    <input type="number" id="price" name="price" step="0.01" min="0" required>
+
+
+                <div class="form-group" style="margin-top: 23px;">
+                    <div class="dropdown-box">
+                        <div class="selected-item">
+                            <input type="text" name="" id="" value="Select" readonly>
+                        </div>
+                        <div class="drop-content">
+                            <div class="search-input">
+                                <input type="text" name="" id="">
+                            </div>
+                            <ul>
+                                <li class="drop-item active">Select</li>
+                                {% for product in products %}
+                                <li class="drop-item">{{product.name}}</li>
+
+                                {% endfor %}
+
+
+
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                
                 <div class="form-group span-2">
-                    <label for="total">Total:</label>
-                    <input type="text" id="total" name="total" readonly placeholder="Calculated Total" class="read-only">
+                    <label for="customer">Phone:</label>
+                    <input type="text" id="customer" name="customer" placeholder="+959" required>
                 </div>
 
+
+
                 <div class="form-group full-width">
-                    <label for="date">Date:</label>
+                    <label for="date">Order Date:</label>
                     <input type="date" id="date" name="date" required value="2025-11-25">
                 </div>
-                
+
                 <button type="submit" class="full-width action-button">Place Order</button>
             </form>
         </div>
@@ -106,6 +204,64 @@
             </table>
         </div>
     </div>
+    <script>
+        window.addEventListener("load", () => {
+            window.addEventListener("click", windowClick => {
+                const dropdown = document.querySelector(".dropdown-box");
+                const dropContent = document.querySelector(".drop-content");
+                const selectItem = document.querySelector(".selected-item");
+                if (dropdown.classList.contains("active")) {
+                    if (!dropContent.contains(windowClick.target)) {
+                        closeDrop();
+                    }
+                }
+                else if (selectItem.contains(windowClick.target)) {
+                    openDrop();
+                }
 
+            })
+            const dropItem = document.querySelectorAll(".drop-item ");
+
+            dropItem.forEach(dropdownItems => {
+                dropdownItems.addEventListener("click", () => {
+                    dropItem.forEach(innnerDropDownItem => {
+                        innnerDropDownItem.classList.remove("active")
+                    });
+                    dropdownItems.classList.add("active");
+
+                    const selectedItemInput = document.querySelector(".selected-item input");
+                    selectedItemInput.value = dropdownItems.innerHTML;
+                    closeDrop();
+
+                });
+
+
+            });
+
+            const searchInput = document.querySelector(".search-input input");
+
+            searchInput.addEventListener("keyup", () => {
+                const filter = searchInput.value.toLocaleLowerCase();
+                dropItem.forEach(dropdownItems => {
+                    if (dropdownItems.innerHTML.toLocaleLowerCase().startsWith(filter)) {
+                        dropdownItems.classList.remove("hide");
+                    } else {
+                        dropdownItems.classList.add("hide");
+                    }
+                })
+
+            })
+
+        });
+        function openDrop() {
+            const dropdown = document.querySelector(".dropdown-box");
+            dropdown.classList.add("active")
+        }
+        function closeDrop() {
+            const dropdown = document.querySelector(".dropdown-box");
+            dropdown.classList.remove("active")
+        }
+    </script>
 </body>
+
 </html>

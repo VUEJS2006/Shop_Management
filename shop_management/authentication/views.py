@@ -3,7 +3,14 @@ from authentication.models import UserModel
 from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 def LoginView(request):
-    if request.method == "GET":    
+    if request.method == "GET":  
+     if request.user.is_authenticated:
+        if request.user.is_superuser:
+           return redirect('/dashboard/dashboard/')
+        else:
+           return redirect('/website/sales/')
+      
+     
      return render(request,'login.html')
     if request.method == "POST":
        email = request.POST['email']
@@ -14,7 +21,10 @@ def LoginView(request):
        )
        if user is not None:
           login(request,user)
-          return redirect('/dashboard/dashboard/')
+          if request.user.is_superuser:
+             return redirect('/dashboard/dashboard/')
+          else:
+            return redirect('/website/sales/')
        else:
           messages.error(request,'Email or Password Not Found!')
           return redirect('/')

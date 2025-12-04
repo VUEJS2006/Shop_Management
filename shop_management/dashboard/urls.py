@@ -9,7 +9,6 @@ urlpatterns = [
    path('manager/create/',views.AddManager, name='manager_create'),
    path('manager/update?/<uuid:pk>',views.ManagerUpdate,name='manager_update'),
    path('daily_sale/',views.Daily_Sale, name='daily_sales'),
-   path('shop/',views.shop, name='shop'),
    path('setting/',views.Setting, name='setting'),
    path('daily_orders/',views.Daily_orders, name='daily_orders'),
    path('request_table/',views.Request, name='request'),
@@ -18,4 +17,10 @@ urlpatterns = [
    path("products/upload/", views.product_upload, name="product_upload"),
    path('settings/',views.Settings, name='settings'),
    path('settings/update/<uuid:pk>',views.SettingsUpdate, name='setting_update'),
+   # shop 
+   path('shop/',views.ShopUpload, name='shop'),
+   path('shop/create/',views.AddShop, name='add_shop'),
+   path('shop/update/<int:pk>',views.UpdateShop, name='update_shop'),
+   path('shop/delete/<int:pk>',views.DeleteShop, name='delete_shop'),
+
 ]

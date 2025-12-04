@@ -1,125 +1,190 @@
-{% extends 'base.html'%} {% block title %}Shop Page{% endblock %} 
-{% block content %} {% include 'siber.html'%}
+{% extends 'base.html'%}
+{% block title %}Shop Page{% endblock %}
+{% block content %}
+{% include 'siber.html'%}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
-    <link rel="stylesheet" href="../../static/css/dashboard.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="../../static/css/dashboard.css">
+</head>
+
+<body>
     <main class="content">
-      <section class="main" style="margin-top: 20px">
-        <div class="box box-6">
-          <div class="box-header">
-            <h4>Shop Uploaded</h4>
-            <button
-              class="shop"
-              data-bs-toggle="modal"
-              data-bs-target="#userForm"
-            >
-              Add New Shop
-            </button>
-          </div>
-          <div class="box-body">
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Shop Name</th>
-                  <th>Photo</th>
-                  <th>Address</th>
-                  <th>Phone</th>
-                  <th>Remark</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for s in shops %}
-                <tr>
-                  <td>{{ s.id }}</td>
-                  <td>{{ s.name }}</td>
-                  <td>
-                    {% if s.photo %}
-                    <img src="{{ s.photo.url }}" width="50" />
-                    {% else %}
-                    <img src="/static/default.jpg" width="50" />
-                    {% endif %}
-                  </td>
+        <section class="main" style="margin-top: 20px;">
+            <div class="box box-6">
+                <div class="box-header">
+                    <h4>Shop Uploaded</h4>
+                    <button class="shop" data-bs-toggle="modal" data-bs-target="#userForm">Add New Products</button>
+                </div>
+                <div class="box-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Shop Name</th>
+                                <th>Shop Image</th>
+                                <th>Phone</th>
+                                <th>Adress</th>
+                                <th>Remark</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for shop in shops %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{shop.name}}</td>
+                                <td>
+                                    <img style="margin: 15px;" src="{{shop.image.url}}" alt="" width="80">
+                                </td>
+                                <td>{{shop.phone}}</td>
+                                <td>{{shop.address}}</td>
+                                <td>{{shop.remark}}</td>
+                                <td>
+                                    <button class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#updateModal_{{ shop.id }}"> <ion-icon name="create-outline"
+                                            style="font-size: 1.7rem;color: #fff;"></ion-icon></button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal_{{shop.id}}"><ion-icon
+                                            style="font-size: 1.7rem;color: #fff;"
+                                            name="trash-outline"></ion-icon></button>
 
-                  <td>{{ s.address }}</td>
-                  <td>{{ s.phone }}</td>
-                  <td>{{ s.remark }}</td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
     </main>
-    <!-- Model -->
+    <!-- Modal -->
     <div class="modal fade" id="userForm">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Shop Uploaded Form</h4>
-            <button
-              type="button"
-              style="font-size: 17px"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form
-              action=""
-              method="POST"
-              enctype="multipart/form-data"
-              id="myForm"
-            >
-              {% csrf_token %}
-
-              <div class="card imgholder">
-                <label for="imgInput" class="Uploaded">
-                  <input type="file" name="photo" id="imgInput" />
-                  <ion-icon name="add-circle-outline"></ion-icon>
-                </label>
-                <img src="../../media/pb.jpg" alt="" width="200" />
-              </div>
-
-              <div class="inputField">
-                <div>
-                  <label>Shop Name : </label>
-                  <input type="text" name="name" />
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Shop</h4>
+                    <button type="button" style="font-size: 17px;" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <div>
-                  <label>Ph : </label>
-                  <input type="text" name="phone" />
+                <div class="modal-body">
+                    <form action="{% url 'add_shop' %}" method="POST" enctype="multipart/form-data" id="myForm">
+                        {% csrf_token %}
+
+                        <div class="card imgholder">
+                            <label for="imgInput" class="Uploaded">
+                                <input type="file" name="image" id="imgInput">
+                                <ion-icon name="add-circle-outline"></ion-icon>
+                            </label>
+                            <img id="previewImg" src="../../media/profile/8608769.png" width="200">
+                        </div>
+
+                        <div class="inputField">
+                            <div>
+                                <label>Shop Name</label>
+                                <input type="text" name="name" class="fs-3">
+                            </div>
+
+
+                            <div>
+                                <label>Phone</label>
+                                <input type="text" name="phone" class="fs-3">
+                            </div>
+                            <div>
+                                <label>Address</label>
+                                <textarea style="resize: none;height: 100px;font-size: 16px;" name="address"
+                                    id=""></textarea>
+                            </div>
+                            <div>
+                                <label>Remark</label>
+                                <textarea style="resize: none;height: 100px;font-size: 16px;" name="remark"
+                                    id=""></textarea>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
-                <div>
-                  <label>Remark : </label>
-                  <input type="text" name="remark" />
+                <div class="modal-footer">
+                    <button type="submit" form="myForm" class="shop submit">Uploaded</button>
                 </div>
-
-                <div>
-                  <label>Address : </label>
-                  <textarea name="address" style="resize: none"></textarea>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" form="myForm" class="shop submit">
-              Uploaded
-            </button>
-          </div>
+            </div>
         </div>
-      </div>
     </div>
+    <!-- Update -->
+    {% for shop in shops %}
+    <div class="modal fade" id="updateModal_{{ shop.id }}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Update Shop</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form method="POST" action="{% url 'update_shop' shop.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="mb-3 text-start">
+                            <label class="form-label fs-4">Shop Name</label>
+                            <input type="text" class="form-control fs-4" name="name" value="{{ shop.name }}">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="col-form-label  fs-4">Current Image</label><br>
+                            {% if shop.image %}
+                            <img src="{{shop.image.url}}" width="90px">
+                            {% endif %}
+                            <input type="file" name="image" class="form-control mt-2 fs-4">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="form-label  fs-4">Phone</label>
+                            <input type="text" class="form-control fs-4" name="phone" value="{{ shop.phone }}">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="form-label  fs-4">Address</label>
+                            <textarea name="address" id="" class="form-control"
+                                style="resize: none;font-size: 16px;">{{shop.address}}</textarea>
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="form-label  fs-4">Remark</label>
+                            <textarea name="remark" id="" class="form-control"
+                                style="resize: none;font-size: 16px;height: 60px;">{{shop.remark}}</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary fs-4" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success fs-4">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- Delete -->
+    {% for shop in shops %}
+    <div class="modal fade" id="deleteModal_{{shop.id}}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-danger text-white">
+                    <h3 class="modal-title">Delete Shop</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form method="POST" action="{% url 'delete_shop' shop.id%}">
+                    {% csrf_token %}
+                    <div class="modal-body fs-3">
+                        Are you sure you want to delete?<strong>{{shop.name}}</strong>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
     {% endblock %}
-  </body>
+</body>
+
 </html>

@@ -31,12 +31,12 @@
                     <tbody>
                             {% for p in products %}
                             <tr>
-                                <td>{{ p.code }}</td>
+                                <td>{{ p.code }}#</td>
                                 <td>{{ p.name }}</td>
                                 <td>
-                                    <img src="{{ p.photo.url }}" width="50">
+                                    <img style="margin: 15px;" src="{{ p.photo.url }}" width="70">
                                 </td>
-                                <td>{{ p.price }}</td>
+                                <td>{{ p.price }}MMK</td>
                             </tr>
                             {% endfor %}
 
@@ -64,23 +64,23 @@
                             <input type="file" name="photo" id="imgInput" required>
                             <ion-icon name="add-circle-outline"></ion-icon>
                         </label>
-                        <img id="previewImg" src="../../media/pb.jpg" width="200">
+                        <img id="previewImg" src="../../media/profile/8608769.png" width="200">
                     </div>
 
                     <div class="inputField">
                         <div>
-                            <label>Products Code : </label>
-                            <input type="text" name="code" required>
+                            <label> Code </label>
+                            <input type="text" name="code" class="fs-2" required>
                         </div>
 
                         <div>
-                            <label>Products Name : </label>
-                            <input type="text" name="name" required>
+                            <label> Name  </label>
+                            <input type="text" name="name" class="fs-2" required>
                         </div>
 
                         <div>
-                            <label>Price : </label>
-                            <input type="text" name="price" required>
+                            <label>Price </label>
+                            <input type="text" name="price" class="fs-2" required>
                         </div>
                     </div>
                 </form>
