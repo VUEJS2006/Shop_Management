@@ -105,28 +105,35 @@
             </h2>
             <form action="#" method="POST" class="form-grid">
 
-               
+
+
 
                 <div class="form-group span-2">
-                    <label for="customer">Customer Name:</label>
+                    <label for="customer">Customer Name</label>
                     <input type="text" id="customer" name="customer" required>
                 </div>
-
-
                 <div class="form-group span-2">
-                    <label for="product_code">Product Code:</label>
-                    <input type="text" id="product_code" name="product_code">
+                    <label for="customer">Product Code</label>
+                    <select name="" id="">
+                        {% for product in products %}
+                        <option value="">{{product.code}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
+
+
+
+
 
                 <div class="form-group">
-                    <label for="qty">Quantity (Qty):</label>
+                    <label for="qty">Quantity</label>
                     <input type="number" id="qty" name="qty" min="1" required>
                 </div>
-
 
                 <div class="form-group" style="margin-top: 23px;">
                     <div class="dropdown-box">
                         <div class="selected-item">
+
                             <input type="text" name="" id="" value="Select" readonly>
                         </div>
                         <div class="drop-content">
@@ -147,16 +154,16 @@
                     </div>
                 </div>
                 <div class="form-group span-2">
-                    <label for="customer">Phone:</label>
+                    <label for="customer">Phone</label>
                     <input type="text" id="customer" name="customer" placeholder="+959" required>
                 </div>
 
 
-
-                <div class="form-group full-width">
+                <div class="form-group">
                     <label for="date">Order Date:</label>
                     <input type="date" id="date" name="date" required value="2025-11-25">
                 </div>
+
 
                 <button type="submit" class="full-width action-button">Place Order</button>
             </form>

@@ -4,13 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 def LoginView(request):
     if request.method == "GET":  
-     if request.user.is_authenticated:
-        if request.user.is_superuser:
-           return redirect('/dashboard/dashboard/')
-        else:
-           return redirect('/website/sales/')
-      
-     
+   #   if request.user.is_superuser:
+   #      return redirect('/dashboard/dashboard/')
      return render(request,'login.html')
     if request.method == "POST":
        email = request.POST['email']

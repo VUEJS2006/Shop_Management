@@ -4,95 +4,186 @@
 {% include 'siber.html'%}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
     <link rel="stylesheet" href="../../static/css/dashboard.css">
 </head>
+
 <body>
     <main class="content">
-    <section class="main" style="margin-top: 20px;">
-        <div class="box box-6">
-            <div class="box-header">
-                <h4>Products Uploaded</h4>
-                <button class="shop" data-bs-toggle="modal" data-bs-target="#userForm">Add New Products</button>
-            </div>
-            <div class="box-body">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Products Code</th>
-                            <th>Products Name</th>
-                            <th>Products Photo</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <section class="main" style="margin-top: 20px;">
+            <div class="box box-6">
+                <div class="box-header">
+                    <h4>Products Uploaded</h4>
+                    <button class="shop" data-bs-toggle="modal" data-bs-target="#userForm">Add New Products</button>
+                </div>
+                <div class="box-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Products Code</th>
+                                <th>Products Name</th>
+                                <th>Products Photo</th>
+                                <th>Price</th>
+                                <th>Unit</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {% for p in products %}
                             <tr>
+                                <td>{{forloop.counter}}</td>
                                 <td>{{ p.code }}#</td>
                                 <td>{{ p.name }}</td>
                                 <td>
                                     <img style="margin: 15px;" src="{{ p.photo.url }}" width="70">
                                 </td>
+
                                 <td>{{ p.price }}MMK</td>
+                                <td>{{p.unit}}</td>
+                                <td>
+                                    <button class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#updateModal_{{ p.id }}"> <ion-icon name="create-outline"
+                                            style="font-size: 1.7rem;color: #fff;"></ion-icon></button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal_{{p.id}}"><ion-icon
+                                            style="font-size: 1.7rem;color: #fff;"
+                                            name="trash-outline"></ion-icon></button>
+
+                                </td>
                             </tr>
                             {% endfor %}
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    </section>
-</main>
-<!-- Model -->
-<div class="modal fade" id="userForm">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">New Products</h4>
-                <button type="button" style="font-size: 17px;" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
+        </section>
+    </main>
+    <!-- Model -->
+    <div class="modal fade" id="userForm">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">New Products</h4>
+                    <button type="button" style="font-size: 17px;" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
 
-            <div class="modal-body">
-                <form action="{% url 'product_upload' %}" method="POST" enctype="multipart/form-data" id="myForm">
-                    {% csrf_token %}
+                <div class="modal-body">
+                    <form action="{% url 'product_upload' %}" method="POST" enctype="multipart/form-data" id="myForm">
+                        {% csrf_token %}
 
-                    <div class="card imgholder">
-                        <label for="imgInput" class="Uploaded">
-                            <input type="file" name="photo" id="imgInput" required>
-                            <ion-icon name="add-circle-outline"></ion-icon>
-                        </label>
-                        <img id="previewImg" src="../../media/profile/8608769.png" width="200">
-                    </div>
-
-                    <div class="inputField">
-                        <div>
-                            <label> Code </label>
-                            <input type="text" name="code" class="fs-2" required>
+                        <div class="card imgholder">
+                            <label for="imgInput" class="Uploaded">
+                                <input type="file" name="photo" id="imgInput" required>
+                                <ion-icon name="add-circle-outline"></ion-icon>
+                            </label>
+                            <img id="previewImg" src="../../media/profile/8608769.png" width="200">
                         </div>
 
-                        <div>
-                            <label> Name  </label>
-                            <input type="text" name="name" class="fs-2" required>
-                        </div>
+                        <div class="inputField">
+                            <div>
+                                <label> Code </label>
+                                <input type="text" name="code" class="fs-2" required>
+                            </div>
 
-                        <div>
-                            <label>Price </label>
-                            <input type="text" name="price" class="fs-2" required>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                            <div>
+                                <label> Name </label>
+                                <input type="text" name="name" class="fs-2" required>
+                            </div>
 
-            <div class="modal-footer">
-                <button type="submit" form="myForm" class="shop submit">Uploaded</button>
+                            <div>
+                                <label>Price </label>
+                                <input type="text" name="price" class="fs-2" required>
+                            </div>
+                            <div>
+                                <label>Unit </label>
+                                <input type="text" name="unit" class="fs-2" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" form="myForm" class="shop submit">Uploaded</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- Delete -->
+    {% for p in products %}
+    <div class="modal fade" id="deleteModal_{{p.id}}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-danger text-white">
+                    <h3 class="modal-title">Delete Shop</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form method="POST" action="{% url 'delete_product' p.id%}">
+                    {% csrf_token %}
+                    <div class="modal-body fs-3">
+                        Are you sure you want to delete?<strong>{{p.name}}</strong>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- Update -->
+    {% for p in products %}
+    <div class="modal fade" id="updateModal_{{ p.id }}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Update Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form method="POST" action="{% url 'update_product' p.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="mb-3 text-start">
+                            <label class="form-label fs-4">Product Code</label>
+                            <input type="text" class="form-control fs-4" name="code" value="{{ p.code }}">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="form-label fs-4">Price</label>
+                            <input type="text" class="form-control fs-4" name="price" value="{{ p.price }}">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="col-form-label  fs-4">Image</label><br>
+                            {% if p.photo %}
+                            <img src="{{p.photo.url}}" width="90px">
+                            {% endif %}
+                            <input type="file" name="photo" class="form-control mt-2 fs-4">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="form-label  fs-4">Product Name</label>
+                            <input type="text" class="form-control fs-4" name="name" value="{{ p.name }}">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label class="form-label fs-4">Unit</label>
+                            <input type="text" class="form-control fs-4" name="unit" value="{{ p.unit }}">
+                        </div>
 
-{% endblock %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary fs-4" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success fs-4">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}
 </body>
+
 </html>

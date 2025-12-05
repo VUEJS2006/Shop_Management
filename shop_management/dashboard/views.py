@@ -103,9 +103,35 @@ def product_upload(request):
             code=request.POST["code"],
             name=request.POST["name"],
             price=request.POST["price"],
-            photo=request.FILES["photo"]
+            photo=request.FILES["photo"],
+            unit = request.POST["unit"]
         )
-        return redirect("product_list")
+        messages.success(request,'Add Product!')
+        return redirect('/dashboard/products/')
+def DeleteProduct(request,pk):
+    if request.method == "GET":
+        return render(request,'products.html')
+    product = Product.objects.get(id = pk)
+    if request.method == "POST":
+        if product.photo:
+            product.photo.delete()
+            product.delete()
+            messages.success(request,'Delete Product!')
+            return redirect('/dashboard/products/')
+def UpdateProduct(request,pk):
+    if request.method == "GET":
+        return render(request,'products.html')
+    product = Product.objects.get(id = pk)
+    if request.method == "POST":
+        product.name = request.POST['name']
+        product.code = request.POST['code']
+        product.price = request.POST['price']
+        product.unit = request.POST['unit']
+        if request.FILES.get('photo'):
+            product.photo = request.FILES.get('photo')
+        product.save()
+        messages.success(request,'Update Product!')
+        return redirect('/dashboard/products/')
 def ShopUpload(request):
     shops = Shop.objects.all()
     context = {

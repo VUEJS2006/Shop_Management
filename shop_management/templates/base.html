@@ -18,11 +18,13 @@
     {% if messages %}
     {% for message in messages %}
 
-    <div class="alert {{ message.tags }} alert-dismissible fade show mt-3 fs-3" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria label="Close"></button>
-    </div>
+    <div class="oo" style="margin-left: 270px;">
+        <div class="alert {{ message.tags }} alert-dismissible fade show mt-3 fs-3" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria label="Close"></button>
+        </div>
 
+    </div>
     {% endfor %}
     {% endif %}
     {% block content %}
