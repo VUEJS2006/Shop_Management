@@ -9,3 +9,6 @@ def Orders(request):
 
 def Sales(request):
     return render(request, 'sales.html')
+
+def Home(request):
+    return render(request, 'home.html')

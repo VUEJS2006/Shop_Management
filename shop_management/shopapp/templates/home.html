@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+{% block title %}Shop Page{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="../../static/css/dashboard.css">
+</head>
+
+<body>
+    <main class="content">
+        <section class="main" style="margin-top: 20px;">
+            <div class="box box-6">
+                <div class="box-header">
+                    <h4>Products</h4>
+                </div>
+                <div class="box-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Products Code</th>
+                                <th>Products Name</th>
+                                <th>Products Photo</th>
+                                <th>Price</th>
+                                <th>Unit</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in products %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{ p.code }}#</td>
+                                <td>{{ p.name }}</td>
+                                <td>
+                                    <img style="margin: 15px;" src="{{ p.photo.url }}" width="70">
+                                </td>
+
+                                <td>{{ p.price }}MMK</td>
+                                <td>{{p.unit}}</td>
+                                <td>
+                                    <button class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#updateModal_{{ p.id }}"> <ion-icon name="create-outline"
+                                            style="font-size: 1.7rem;color: #fff;"></ion-icon></button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal_{{p.id}}"><ion-icon
+                                            style="font-size: 1.7rem;color: #fff;"
+                                            name="trash-outline"></ion-icon></button>
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    {% endblock %}
+</body>
+
+</html>
